@@ -1,0 +1,6 @@
+Django==2.2
+django-js-asset==1.2.2
+django-mptt==0.10.0
+Pillow==6.0.0
+pytz==2019.1
+sqlparse==0.3.0
