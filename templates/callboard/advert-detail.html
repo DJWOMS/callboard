@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ advert.subject }}</h2>
+    <p>{{ advert.description }}</p>
+    <p>
+        {% for photo in advert.images.photos.all %}
+            {% if photo.image %}
+                <img src="{{ photo.image.url }}" style="width: 200px;">
+            {% endif %}
+        {% endfor %}
+    </p>
+    <p>{{ advert.date }}</p>
+    <p>{{ advert.filters }}</p>
+    <p>{{ advert.price }}</p>
+    <p>{{ advert.created }}</p>
+    <hr>
+{% endblock content %}

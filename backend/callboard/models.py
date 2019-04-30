@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -44,8 +45,9 @@ class DateAdvert(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Фильтр"
-        verbose_name_plural = "Фильтры"
+        verbose_name = "Срок"
+        verbose_name_plural = "Сроки"
+        ordering = ["id"]
 
 
 class Advert(models.Model):
@@ -67,11 +69,14 @@ class Advert(models.Model):
     price = models.DecimalField("Цена", max_digits=8, decimal_places=2)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
     moderation = models.BooleanField("Модерация", default=False)
-    # TODO: для slug генерить путь (id, subject)
+    # TODO: для slug генерить путь (user, subject)
     slug = models.SlugField("url", max_length=200, unique=True)
 
     def __str__(self):
         return self.subject
+
+    def get_absolute_url(self):
+        return reverse("advert-detail", kwargs={"category": self.category.slug, "slug": self.slug})
 
     class Meta:
         verbose_name = "Объявление"
