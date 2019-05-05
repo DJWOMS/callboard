@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'mptt',
 
     'backend.callboard',
-    'backend.gallery'
+    'backend.gallery',
+    'backend.profiles',
 
 ]
 

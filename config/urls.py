@@ -8,6 +8,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('profile/', include("backend.profiles.urls")),
     path('', include("backend.callboard.urls")),
 ]
 
