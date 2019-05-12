@@ -19,9 +19,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.first_name
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.slug = "{}{}".format(self.user_id, self.first_name)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     self.slug = "{}{}".format(self.user_id, self.first_name)
 
     # def get_absolute_url(self):
     #     return reverse("profile-detail", kwargs={"slug": self.user.username})
@@ -35,7 +35,7 @@ class Profile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     """Создание профиля пользователя при регистрации"""
     if created:
-        Profile.objects.create(user=instance) #id=instance.id
+        Profile.objects.create(user=instance)
 
 
 @receiver

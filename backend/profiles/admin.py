@@ -7,6 +7,3 @@ from .models import Profile
 class ProfileAdmin(admin.ModelAdmin):
     """Профиль пользователя"""
     list_display = ("user", "email_two", "first_name")
-
-
-#admin.site.register(Profile)
