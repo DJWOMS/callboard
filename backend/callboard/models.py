@@ -12,7 +12,8 @@ class Category(MPTTModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='children'
+        related_name='children',
+        verbose_name="Родитель"
     )
     slug = models.SlugField("url", max_length=50, unique=True)
 
@@ -21,6 +22,7 @@ class Category(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['name']
+        verbose_name = "Категория"
 
 
 class FilterAdvert(models.Model):
