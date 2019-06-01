@@ -48,3 +48,21 @@ class AdvertDetailSer(serializers.ModelSerializer):
             "created",
             "user"
         )
+
+
+class AdvertCreateSer(serializers.ModelSerializer):
+    """Добавление объявления"""
+    class Meta:
+        model = Advert
+        fields = (
+            "category",
+            "filters",
+            "date",
+            "subject",
+            "description",
+            "price",
+            "user"
+        )
+
+    # def create(self, request):
+    #     results = request.pop('results')
