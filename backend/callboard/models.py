@@ -3,6 +3,8 @@ from django.db import models
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 
+from backend.utils.transliteration import transliteration_rus_eng
+
 
 class Category(MPTTModel):
     """Категории объявлений"""
@@ -60,6 +62,7 @@ class Advert(models.Model):
     date = models.ForeignKey(DateAdvert, verbose_name="Срок", on_delete=models.CASCADE)
     subject = models.CharField("Тема", max_length=200)
     description = models.TextField("Объявление", max_length=10000)
+    # TODO загрузка N изображений
     images = models.ForeignKey(
         'gallery.Gallery',
         verbose_name="Изображения",
@@ -71,8 +74,12 @@ class Advert(models.Model):
     price = models.DecimalField("Цена", max_digits=8, decimal_places=2)
     created = models.DateTimeField("Дата создания", auto_now_add=True)
     moderation = models.BooleanField("Модерация", default=False)
-    # TODO: для slug генерить путь (user, subject)
     slug = models.SlugField("url", max_length=200, unique=True)
+
+    def save(self, *args, **kwargs):
+        # TODO Доработать "slug = subject + id"
+        self.slug = transliteration_rus_eng(self.subject) + "_" + str(self.id)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.subject

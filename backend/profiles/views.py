@@ -1,11 +1,8 @@
 from rest_framework import generics
 from rest_framework import permissions
 
-from backend.callboard.models import Advert
-from backend.callboard.serializers import AdvertListSer, AdvertCreateSer
-
 from .models import Profile
-from .serializers import ProfileSer, ProfileUpdateSer
+from .serializers import ProfileSer, ProfileUpdateSer, AvatarUpdateSer
 
 
 class ProfileDetail(generics.RetrieveAPIView):
@@ -22,20 +19,10 @@ class ProfileUpdateView(generics.UpdateAPIView):
     serializer_class = ProfileUpdateSer
 
 
-class UserAdvertList(generics.ListAPIView):
-    """Все объявления пользователя"""
+class AvatarProfileUpdateView(generics.UpdateAPIView):
+    """Редактирование профилья пользователя"""
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = AdvertListSer
+    queryset = Profile.objects.all()
+    serializer_class = AvatarUpdateSer
 
-    def get_queryset(self):
-        return Advert.objects.filter(user=self.request.user)
-
-
-class UserAdvertUpdate(generics.UpdateAPIView):
-    """Редактирование объявления пользователя"""
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = AdvertCreateSer
-
-    def get_queryset(self):
-        return Advert.objects.filter(user=self.request.user)
 

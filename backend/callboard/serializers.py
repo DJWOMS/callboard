@@ -52,6 +52,8 @@ class AdvertDetailSer(serializers.ModelSerializer):
 
 class AdvertCreateSer(serializers.ModelSerializer):
     """Добавление объявления"""
+    #images = GallerySer()
+
     class Meta:
         model = Advert
         fields = (
@@ -60,7 +62,8 @@ class AdvertCreateSer(serializers.ModelSerializer):
             "date",
             "subject",
             "description",
-            "price"
+            "price",
+            "images"
         )
 
     def create(self, request):
