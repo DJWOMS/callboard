@@ -12,6 +12,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('api-auth/', include('rest_framework.urls')),
     path('profile/', include("backend.profiles.urls")),
+    path('search/', include("backend.search.urls")),
     path('', include("backend.callboard.urls")),
 ]
 

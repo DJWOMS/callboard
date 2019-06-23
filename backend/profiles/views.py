@@ -20,7 +20,7 @@ class ProfileUpdateView(generics.UpdateAPIView):
 
 
 class AvatarProfileUpdateView(generics.UpdateAPIView):
-    """Редактирование профилья пользователя"""
+    """Редактирование аватара профилья пользователя"""
     permission_classes = [permissions.IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = AvatarUpdateSer

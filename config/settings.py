@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'backend.callboard',
     'backend.gallery',
     'backend.profiles',
+    'backend.search',
 
 ]
 
